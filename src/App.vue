@@ -18,7 +18,8 @@
         <div class="md-layout-item md-xsmall-size-33 md-small-size-33 md-medium-size-33 md-large-size-33 md-xlarge-size-33"><md-button class="md-raised btn-number" @click="tail(7)">7</md-button></div>
         <div class="md-layout-item md-xsmall-size-33 md-small-size-33 md-medium-size-33 md-large-size-33 md-xlarge-size-33"><md-button class="md-raised btn-number" @click="tail(8)">8</md-button></div>
         <div class="md-layout-item md-xsmall-size-33 md-small-size-33 md-medium-size-33 md-large-size-33 md-xlarge-size-33"><md-button class="md-raised btn-number" @click="tail(9)">9</md-button></div>
-        <div class="md-layout-item md-xsmall-size-100"><md-button class="md-raised btn-option" @click="clear()">C</md-button></div>
+        <div class="md-layout-item md-xsmall-size-50 md-small-size-50 md-medium-size-50 md-large-size-50 md-xlarge-size-50"><md-button class="md-raised btn-number" @click="tail(0)">0</md-button></div>
+        <div class="md-layout-item md-xsmall-size-50 md-small-size-50 md-medium-size-50 md-large-size-50 md-xlarge-size-50"><md-button class="md-raised btn-option" @click="clear()">C</md-button></div>
       </div>
     </md-card>
   </div>
