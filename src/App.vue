@@ -28,6 +28,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
+import moment from 'moment';
 
 @Component
 export default class App extends Vue {
@@ -36,45 +37,39 @@ export default class App extends Vue {
     let strsec = this.seconds;
     strsec = strsec.replace(',', '.');
     strsec = strsec.replace(/[^e\.\d]+/g, '');
-    let seconds = parseFloat(strsec) || 0;
+    const seconds = parseFloat(strsec) || 0;
     this.seconds = seconds.toString();
-    let minutes = 0;
-    let hours = 0;
-    let days = 0;
-    let weeks = 0;
-    let months = 0;
-    let years = 0;
-    if (!seconds) return '0s';
-    let time = `${seconds}s`;
-    if (seconds > 59) {
-      minutes = Math.floor(seconds / 60);
-      seconds -= minutes * 60;
-      time = `${minutes}m${seconds}s`;
+    const duration = moment.duration(seconds, 'seconds');
+    let time = '';
+    if (duration.seconds()) {
+      time = `${duration.seconds()}s`;
+      console.log(duration.seconds());
     }
-    if (minutes && minutes > 59) {
-      hours = Math.floor(minutes / 60);
-      minutes -= hours * 60;
-      time = `${hours}h${minutes}m${seconds}s`;
+    if (duration.minutes()) {
+      time = `${duration.minutes()}m${duration.seconds()}s`;
+      console.log(duration.minutes());
     }
-    if (hours && hours > 23) {
-      days = Math.floor(hours / 24);
-      hours -= days * 24;
-      time = `${days}d${hours}h${minutes}m${seconds}s`;
+    if (duration.hours() ) {
+      time = `${duration.hours()}h${duration.minutes()}m${duration.seconds()}s`;
+      console.log(duration.hours());
     }
-    if (days && days > 6) {
-      weeks = Math.floor(days / 7);
-      days -= weeks * 7;
-      time = `${weeks}w${days}d${hours}h${minutes}m${seconds}s`;
+    if (duration.days()) {
+      time = `${duration.days()}d${duration.hours()}h${duration.minutes()}m${duration.seconds()}s`;
+      console.log(duration.days());
     }
-    if (weeks && weeks > 3) {
-      months = Math.floor(weeks / 4);
-      weeks -= months * 4;
-      time = `${months}M${weeks}w${days}d${hours}h${minutes}m${seconds}s`;
+    if (duration.weeks()) {
+      time = `${duration.weeks()}w${duration.days()}d${duration.hours()}h${duration.minutes()}m${duration.seconds()}s`;
+      console.log(duration.weeks());
     }
-    if (months && months > 11) {
-      years = Math.floor(months / 12);
-      months -= years * 12;
-      time = `${years}y${months}M${weeks}w${days}d${hours}h${minutes}m${seconds}s`;
+    if (duration.months()) {
+      time = `${duration.months()}M${duration.weeks()}w${duration.days()}d${duration.hours()}h${duration.minutes()}
+        m${duration.seconds()}s`;
+      console.log(duration.months());
+    }
+    if (duration.years()) {
+      time = `${duration.years()}Y${duration.months()}M${duration.weeks()}w${duration.days()}d${duration.hours()}
+        h${duration.minutes()}m${duration.seconds()}s`;
+      console.log(duration.years());
     }
     return time;
   }
